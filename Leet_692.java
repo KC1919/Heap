@@ -26,8 +26,11 @@ class Leet_692
         
         List<String>list=new ArrayList<>();
         
-        while(pq.size()>0)   //we add those words to the list and return
+        while(pq.size()>0) 
+        {
+            //we add those words to the list and return
             list.add(0,pq.remove());
+        }  
         
         return list;
     }
