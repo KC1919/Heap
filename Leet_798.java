@@ -36,39 +36,41 @@ public class Leet_798
         int m=grid[0].length;
         int n=grid.length;
         
+        //adding indexes(after converting 2d index to 1d index) in the priority queue
         PriorityQueue<Integer>pq=new PriorityQueue<>((a,b)->{
             
             int i1=a/m, j1=a%m;
             int i2=b/m, j2=b%m;
             
-            return grid[i1][j1]-grid[i2][j2];
+            return grid[i1][j1]-grid[i2][j2]; //popping the smaller height element from the pq
         });
         
-        int dir[][]={{0,-1},{-1,0},{0,1},{1,0}};
+        int dir[][]={{0,-1},{-1,0},{0,1},{1,0}}; //direction matrix
         
         boolean visited[][]=new boolean[n][m];
         
         int minHeight=0;
-        pq.add(0);
+        pq.add(0);   //starting from the 1st cell of the matrix
         
         while(pq.size()>0)
         {
-            int rem=pq.remove();
-            int r=rem/m;
-            int c=rem%m;
+            int rem=pq.remove();   //this will give out the index of the smallest height bar in the matrix 
+            int r=rem/m;         //we calculate its row
+            int c=rem%m;         //calculate its column
             
             int height = grid[r][c];
 
-            minHeight = Math.max(minHeight, height);
+            minHeight = Math.max(minHeight, height);  //we see if this bars heigth is greater than the encountered bars so far
             
-            if(r==n-1 && c==m-1)
+            if(r==n-1 && c==m-1)  //if we reach the last cell means ,the work is done, so we break out of the loop
                 break;
             
-            for(int[] d:dir)
+            for(int[] d:dir)  //else we travel in all 4 direction from the current cell
             {
                 int nr=r+d[0];
                 int nc=c+d[1];
                 
+                //and check if the cell is within the boundary and it has not been visited earlier so we add its 1d index to the PQ
                 if(nr>=0 && nr<n && nc>=0 && nc<m && visited[nr][nc]==false)
                 {
                     visited[nr][nc]=true;
