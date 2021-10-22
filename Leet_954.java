@@ -26,17 +26,17 @@ Output: false
 
 import java.util.*;
 public class Leet_954 {
-    public boolean canReorderDoubled(int[] ar) 
+    public boolean canReorderDoubled(int[] arr) 
     {
         HashMap<Integer,Integer>hm=new HashMap<>();
         int k=0;
-        int n=ar.length;
-        Integer arr[]=new Integer[n]; //making an array to store the elements and sort them, treating all the elements as positive
+        int n=arr.length;
+        Integer ARR[]=new Integer[n]; //making an array to store the elements and sort them, treating all the elements as positive
         
-        for(int ele:ar)
+        for(int ele:arr)
         {
             hm.put(ele,hm.getOrDefault(ele,0)+1); //mapping the element in the hashmap, with their frequency
-            arr[k++]=ele;   //and also putting the element in the Integer array to sort them customly
+            ARR[k++]=ele;   //and also putting the element in the Integer array to sort them customly
         }
         
         //this will sort the array treating all the elements as positive
@@ -46,9 +46,9 @@ public class Leet_954 {
         //so the output array after getting sorted would become [1,2,(-4),(-8)]
         //so this will help us assure to get twice the number ahead of the current number
 
-        Arrays.sort(arr,(a,b)->{return Math.abs(a)-Math.abs(b);});
+        Arrays.sort(ARR,(a,b)->{return Math.abs(a)-Math.abs(b);});
         
-        for(int ele:arr)
+        for(int ele:ARR)
         {
             if(hm.get(ele)==0) //we check if the elements frequency has become 0
                 continue;      //we continue to the next element
